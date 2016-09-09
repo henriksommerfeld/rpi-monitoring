@@ -2,6 +2,7 @@
 import time
 import os
 import threading
+import requests
 from sense_hat import SenseHat
 from led_message import LedStateMessage
 SEND_DATA_INTERVAL_SECONDS = 10.0
@@ -32,10 +33,11 @@ def get_ambient_temperature():
 def send_data(temp, pressure, humidity, last_time_sent):
 	try:
 		if time.time() - last_time_sent > SEND_DATA_INTERVAL_SECONDS:
+			d = { 'temperature': temp, 'pressure': pressure, 'humidity': humidity }
 			debug("trying to send data...")
-			# todo: send data
-			screen.show_ok_message()
-			debug("sent data")
+			response = requests.post("http://127.0.0.1:8080/api/current", data=d)
+			debug(response)
+			screen.show_ok_message()			
 			last_time_sent = time.time()
 	except Exception as e:
 		last_time_sent = time.time()
