@@ -28,7 +28,7 @@ class LedStateMessage:
         return blank_pixles;
 
     def _get_ok_pixels(self):
-        X = (0, 204, 0)
+        X = (0, 80, 0)
         O = (0, 0, 0)
 
         ok_pixles = [
@@ -45,7 +45,7 @@ class LedStateMessage:
         return ok_pixles;
 
     def _get_warning_pixels(self):
-        X = (255, 128, 0)
+        X = (100, 50, 0)
         O = (0, 0, 0)
 
         warning_pixles = [
@@ -62,7 +62,7 @@ class LedStateMessage:
         return warning_pixles;
 
     def _get_error_pixels(self):
-        X = (204, 0, 0)
+        X = (80, 0, 0)
         O = (0, 0, 0)
 
         error_pixles = [
